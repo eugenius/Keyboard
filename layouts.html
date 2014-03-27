@@ -29,50 +29,6 @@
 	<script src="http://jqueryui.com/themeroller/themeswitchertool/"></script> -->
 
 	<script>
-	// Change display language, if the definitions are available
-	if (typeof(language) === 'undefined') { var language = {}; };
-	var showKb = function(name, lang){
-		if (language.hasOwnProperty(lang)){
-			$.extend(true, $.keyboard.defaultOptions, language[lang]);
-		} else {
-			$.extend(true, $.keyboard.defaultOptions, language.basic);
-		}
-		$('#multi').keyboard({
-			layout: name,
-			usePreview: false,
-			alwaysOpen: true
-		})
-		.addTyping();
-	};
-
-	// Renaming some of the default keyboard key names (including symbols)
-	// *Note* this will effect ALL layouts on this page - but will be overridden by specific layout languages
-	language.basic = {
-		display : {
-			'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
-			'accept' : '\u2714 Accept:Accept (Shift-Enter)', // check mark
-			'alt'    : 'AltGr:Alternate Graphemes',
-			'b'      : '\u2190:Backspace',    // Left arrow (same as &larr;)
-			'bksp'   : ($.browser.msie ? '\u2190 Bksp:Backspace' : '\u232b Bksp:Backspace'), // Arrow with X (not in IE) or Left arrow (same as &larr;)
-			'c'      : '\u2716:Cancel (Esc)', // big X, close - same action as cancel
-			'cancel' : '\u2716 Cancel:Cancel (Esc)', // big X, close - same action as cancel
-			'clear'  : 'C:Clear',             // clear num pad
-			'combo'  : '\u00f6:Toggle Combo Keys',
-			'dec'    : '.:Decimal',           // decimal point for num pad (optional), change '.' to ',' for European format
-			'e'      : '\u21b5:Enter',        // down, then left arrow - enter symbol
-			'enter'  : '\u21b5 Enter:Enter',  // down, then left arrow - enter symbol
-			'lock'   : '\u21ea Lock:Caps Lock', // caps lock
-			's'      : '\u21e7:Shift',        // thick hollow up arrow
-			'shift'  : '\u21e7 Shift:Shift',  // thick hollow up arrow
-			'sign'   : '\u00b1:Change Sign',  // +/- sign for num pad
-			'space'  : '&nbsp;:Space',
-			't'      : '\u21e5:Tab',          // right arrow to bar (used since this virtual keyboard works with one directional tabs)
-			'tab'    : '\u21e5 Tab:Tab'       // right arrow to bar (used since this virtual keyboard works with one directional tabs)
-		},
-		// Message added to the key title while hovering, if the mousewheel plugin exists
-		wheelMessage : 'Use mousewheel to see other keys'
-	};
-
 	$(function(){
 
 		var layouts = [
@@ -88,6 +44,7 @@
 			"Bengali (qwerty-2):bengali-qwerty-2",
 			"Bulgarian (qwerty):bulgarian-qwerty",
 			"Catalan (qwerty):catalan-qwerty",
+			"Chinese (qwerty):chinese-qwerty",
 			"Danish (qwerty):danish-qwerty",
 			"French (azerty-1):french-azerty-1",
 			"French (azerty-2):french-azerty-2",
@@ -95,6 +52,7 @@
 			"German (qwertz-1):german-qwertz-1",
 			"German (qwertz-2):german-qwertz-2",
 			"Hebrew (qwerty):hebrew-qwerty",
+			"Hindi (qwerty):hindi-qwerty",
 			"Magyar (qwertz-1) utf8:hungarian-qwertz-1",
 			"Magyar (qwertz-2) utf8:hungarian-qwertz-2",
 			"Magyar (qwertz-1) ansi:hungarianansi-qwertz-1",
@@ -102,6 +60,7 @@
 			"Japanese (kana):japanese-kana",
 			"Japanese (qwerty):japanese-qwerty",
 			"Latvian (qwerty):latvian-qwerty",
+			"Mongolian (qwerty):mongolian-qwerty",
 			"Polish (qwerty):polish-qwerty",
 			"Portuguese (qwerty):portuguese-qwerty",
 			"Russian (qwerty):russian-qwerty",
@@ -116,11 +75,29 @@
 			"Vietnamese (qwerty):vietnamese-qwerty"
 		],
 
-		t, o = '';
+		t, o = '',
+
+		// Change display language, if the definitions are available
+		showKb = function(layout){
+			var kb = $('#multi').getkeyboard();
+			kb.options.layout = layout;
+			// true flag causes a keyboard refresh
+			kb.reveal(true);
+		};
 
 		$.each(layouts.sort(), function(i, l){
 			t = l.split(':');
 			o += '<option value="' + t[1] + '">' + t[0] + '</option>';
+		});
+
+		$('#multi').keyboard({
+			layout: 'qwerty',
+			stayOpen: true
+		})
+		// activate the typing extension
+		.addTyping({
+			showTyping: true,
+			delay: 50
 		});
 
 		$('#lang')
@@ -130,17 +107,13 @@
 				layout = $(this).val(),
 				file = layout.split('-')[0];
 			$('h2').text(file);
-			// make language RTL, hebrew does it automatically
-			$('#multi')[file.match('arabic') ? 'addClass' : 'removeClass']('rtl');
 
-			if (kb.data('keyboard')) { kb.getkeyboard().destroy(); }
-			if (!language.hasOwnProperty(file)) {
+			if (!$.keyboard.language.hasOwnProperty(file)) {
 				$.getScript('layouts/' + file + '.js', function(){
-					if (kb.data('keyboard')) { kb.getkeyboard().destroy(); }
-					showKb( layout, file );
+					showKb( layout );
 				});
 			} else {
-				showKb( layout, file );
+				showKb( layout );
 			}
 		}).trigger('change');
 
@@ -149,7 +122,6 @@
 	<style>
 
 	.rtl {
-		direction: rtl;
 		text-align: right;
 	}
 	</style>

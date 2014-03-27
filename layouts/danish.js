@@ -9,7 +9,7 @@
  */
 
 /* qwerty by Torben Junker Kjær (jordbo.dk) -  */
-$.keyboard.layouts['danish-qwerty'] = {
+jQuery.keyboard.layouts['danish-qwerty'] = {
 	'default' : [
 		"\u00a7 1 2 3 4 5 6 7 8 9 0 + \u0301 {b}",
 		"{tab} q w e r t y u i o p \u00e5 \u00a8",
@@ -36,8 +36,8 @@ $.keyboard.layouts['danish-qwerty'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.danish = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.danish = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -62,7 +62,3 @@ language.danish = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.danish);

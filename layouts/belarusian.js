@@ -9,7 +9,7 @@
  */
 
 /* based on http://ascii-table.com/keyboard.php/463 & http://www.google.com/webelements/ */
-$.keyboard.layouts['belarusian-qwerty'] = {
+jQuery.keyboard.layouts['belarusian-qwerty'] = {
 	'default' : [
 		"` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
 		"{tab} q w e r t y u i o p [ ] \\",
@@ -43,8 +43,8 @@ $.keyboard.layouts['belarusian-qwerty'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.belarusian = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; };
+jQuery.keyboard.language.belarusian = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -69,7 +69,3 @@ language.belarusian = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.belarusian);

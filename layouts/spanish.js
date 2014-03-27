@@ -10,7 +10,7 @@
  * Spanish layouts by Paco Alcantara (https://github.com/pacoalcantara)  
  * Based on: http://ascii-table.com/keyboard.php/171 and http://ascii-table.com/keyboard.php/071-2
  */
-$.keyboard.layouts['spanish-qwerty'] = {
+jQuery.keyboard.layouts['spanish-qwerty'] = {
 	'default' : [
 		"\u007c 1 2 3 4 5 6 7 8 9 0 \' \u00bf {bksp}",
 		"{tab} q w e r t y u i o p \u0301 +",
@@ -41,7 +41,7 @@ $.keyboard.layouts['spanish-qwerty'] = {
 	]
 };
 
-$.keyboard.layouts['spanish-qwerty-sp'] = {
+jQuery.keyboard.layouts['spanish-qwerty-sp'] = {
 	'default' : [
 		"\u00ba 1 2 3 4 5 6 7 8 9 0 \' \u00a1 {bksp}",
 		"{tab} q w e r t y u i o p \u0300 +",
@@ -75,8 +75,8 @@ $.keyboard.layouts['spanish-qwerty-sp'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.spanish = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.spanish = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -100,7 +100,3 @@ language.spanish = {
 	},
 	wheelMessage : 'Utilice la rueda del mouse para ver otras teclas', 
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.spanish);

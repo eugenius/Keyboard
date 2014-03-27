@@ -9,7 +9,7 @@
  */
 
 /* based on http://ascii-table.com/keyboard.php/480 & http://www.gate2home.com/?language=bn&sec=2 */
-$.keyboard.layouts['bengali-qwerty-1'] = {
+jQuery.keyboard.layouts['bengali-qwerty-1'] = {
 	'default' : [
 		"` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
 		"{tab} q w e r t y u i o p [ ] \\",
@@ -41,7 +41,7 @@ $.keyboard.layouts['bengali-qwerty-1'] = {
 };
 
 /* based on http://www.google.com/webelements/#!/virtualkeyboard */
-$.keyboard.layouts['bengali-qwerty-2'] = {
+jQuery.keyboard.layouts['bengali-qwerty-2'] = {
 	'default' : [
 		"` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
 		"{tab} q w e r t y u i o p [ ] \\",
@@ -75,8 +75,8 @@ $.keyboard.layouts['bengali-qwerty-2'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.bengali = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.bengali = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -101,7 +101,3 @@ language.bengali = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.bengali);

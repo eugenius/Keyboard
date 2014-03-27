@@ -30,7 +30,25 @@ jQuery(function($) {
 
 	// International Text Area
 	// ********************
-	$('#inter').keyboard({ layout: 'international' });
+	$('#inter').keyboard({
+		layout: 'international',
+		css: {
+			// input & preview
+			input: 'form-control input-sm',
+			// keyboard container
+			container: 'center-block dropdown-menu', // jumbotron
+			// default state
+			buttonDefault: 'btn btn-default',
+			// hovered button
+			buttonHover: 'btn-primary',
+			// Action keys (e.g. Accept, Cancel, Tab, etc);
+			// this replaces "actionClass" option
+			buttonAction: 'active',
+			// used when disabling the decimal button {dec}
+			// when a decimal exists in the input area
+			buttonDisabled: 'disabled'
+		}
+	});
 
 	// Alphabetical Text Area
 	// ********************
@@ -333,7 +351,7 @@ jQuery(function($) {
 	// ********************
 	$('.ui-keyboard-input').bind('visible.keyboard hidden.keyboard beforeClose.keyboard accepted.keyboard canceled.keyboard', function(e, keyboard, el, status){
 		var c = $('#console'),
-			t = '<li><span class="keyboard">' + $(el).parent().find('h2').text() + '</span>';
+			t = '<li><span class="keyboard">' + $(el).parent().find('h2 .tooltip-jatt').text() + '</span>';
 			switch (e.type){
 				case 'visible'  : t += ' keyboard is <span class="event">visible</span>'; break;
 				case 'hidden'   : t += ' keyboard is now <span class="event">hidden</span>'; break;
@@ -351,13 +369,11 @@ jQuery(function($) {
 	$('h2 span').click(function(){
 		var t = '<h2>' + $(this).parent().text() + ' Code</h2>' + $(this).closest('.block').find('.code').html();
 		$('#showcode').html(t).show();
-		$("#showcode .js").chili();
-		$("#showcode .html").chili();
 	});
 
 	// add tooltips
 	// ********************
-	$.jatt();
+	$.jatt({ tooltip : '.tooltip-jatt' });
 
 // ********************
 // Extension demos
@@ -407,4 +423,7 @@ jQuery(function($) {
 			source: availableTags
 		})
 		.addAutocomplete();
+
+	prettyPrint();
+
 });

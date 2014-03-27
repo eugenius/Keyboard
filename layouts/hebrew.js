@@ -9,7 +9,7 @@
  */
 
 /* based on http://ascii-table.com/keyboard.php/212 */
-$.keyboard.layouts['hebrew-qwerty'] = {
+jQuery.keyboard.layouts['hebrew-qwerty'] = {
 	'default' : [
 		'; 1 2 3 4 5 6 7 8 9 0 - = {bksp}',
 		"{tab} / ' \u05e7 \u05e8 \u05d0 \u05d8 \u05d5 \u05df \u05dd \u05e4 [ ] \\",
@@ -36,8 +36,8 @@ $.keyboard.layouts['hebrew-qwerty'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.hebrew = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.hebrew = {
 	display : {
 		'a'      : '\u2714:אישור (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'אישור:אישור (Shift-Enter)',
@@ -61,8 +61,6 @@ language.hebrew = {
 	},
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'ניתן להשתמש בגלגלת העכבר כדי לראות מקשים נוספים',
+	// language direction
+	rtl : true
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.hebrew);

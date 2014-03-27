@@ -9,7 +9,7 @@
  */
 
 /* from http://ascii-table.com/keyboard.php/129 */
-$.keyboard.layouts['german-qwertz-1'] = {
+jQuery.keyboard.layouts['german-qwertz-1'] = {
 	'default' : [
 		"\u0302 1 2 3 4 5 6 7 8 9 0 \u00df \u0301 {bksp}",
 		"{tab} q w e r t z u i o p \u00fc +",
@@ -34,7 +34,7 @@ $.keyboard.layouts['german-qwertz-1'] = {
 };
 
 /* from http://ascii-table.com/keyboard.php/150G-1 */
-$.keyboard.layouts['german-qwertz-2'] = {
+jQuery.keyboard.layouts['german-qwertz-2'] = {
 	'default' : [
 		"\u00a7 1 2 3 4 5 6 7 8 9 0 ' \u0302 {bksp}",
 		"{tab} q w e r t z u i o p \u00fc \u0308",
@@ -61,8 +61,8 @@ $.keyboard.layouts['german-qwertz-2'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.german = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.german = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -87,7 +87,3 @@ language.german = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.german);

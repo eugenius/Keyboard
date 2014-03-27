@@ -9,7 +9,7 @@
  * license for this file: WTFPL, unless the source layout site has a problem with me using them as a reference
  */
 
-$.keyboard.layouts['polish-qwerty'] = {
+jQuery.keyboard.layouts['polish-qwerty'] = {
 	'default' : [
 		"` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
 		"{tab} q w e r t y u i o p [ ] \u00B0",
@@ -36,8 +36,8 @@ $.keyboard.layouts['polish-qwerty'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.polish = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.polish = {
 	display : {
 		'a'      : '\u2714:Akceptuj (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Akceptuj (Shift-Enter)',
@@ -62,7 +62,3 @@ language.polish = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Użyj rolki aby zobaczyć pozozstałe klawisze',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.polish);

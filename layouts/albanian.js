@@ -3,7 +3,7 @@
  *
  * To use:
  *  Point to this js file into your page header: <script src="layouts/albanian.js" type="text/javascript"></script>
- *  Initialize the keyboard using: $('input').keyboard({ layout: 'albanian-qwertz' });
+ *  Initialize the keyboard using: jQuery('input').keyboard({ layout: 'albanian-qwertz' });
  *
  * To do: add combos appropriate to the Albanian language
  *  missing caron, breve, ring, ogonek, double acute accent, diaeresis and cedilla accents.
@@ -15,7 +15,7 @@
  combined from http://en.wikipedia.org/wiki/File:Albanian_keyboard_layout.jpg,
  http://ascii-table.com/keyboard.php/448 & http://www.google.com/webelements/ */
 
-$.keyboard.layouts['albanian-qwertz'] = {
+jQuery.keyboard.layouts['albanian-qwertz'] = {
 	'default' : [
 		"\\ 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
 		"{tab} q w e r t z u i o p \u00e7 '",
@@ -40,7 +40,7 @@ $.keyboard.layouts['albanian-qwertz'] = {
 };
 
 /* based on http://ascii-table.com/keyboard.php/452 */
-$.keyboard.layouts['albanian-qwerty'] = {
+jQuery.keyboard.layouts['albanian-qwerty'] = {
 	'default' : [
 		"` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
 		"{tab} q w e r t y u i o p \u00eb '",
@@ -73,8 +73,8 @@ $.keyboard.layouts['albanian-qwerty'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.albanian = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.albanian = {
 	display : {
 		'a'      : '\u2714:Prano (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Prano:Prano (Shift-Enter)',
@@ -97,23 +97,17 @@ language.albanian = {
 		'tab'    : '\u21e5 Tab:Tab'       // \u21b9 is the true tab symbol (left & right arrows)
 	},
 	// Message added to the key title while hovering, if the mousewheel plugin exists
-	wheelMessage : 'Përdorimi mousewheel për të parë çelësat e tjera'
+	wheelMessage : 'P\u00ebrdorimi mousewheel p\u00ebr t\u00eb par\u00eb \u00e7el\u00ebsat e tjera',
+
+	// New combos using specific accents
+	// Not sure what to do with these accents:  ˇ ˘ ˙ ° ˛ ˝
+	comboRegex : /([`\'~\^\"ao\/\u00a8\u00b8])([a-z])/gim,
+	combos : {
+		// duplicated from regular combos, used specific accents here instead ("); \u00a8 = ¨
+		'\u00a8' : { a:"\u00e4", A:"\u00c4", e:"\u00eb", E:"\u00cb", i:"\u00ef", I:"\u00cf", o:"\u00f6", O:"\u00d6", u:"\u00fc", U:"\u00dc", y:"\u00ff", Y:"\u0178" }, // umlaut/trema
+		'\u00b8' : { c:"\u00e7", C:"\u00c7" }, // cedilla ç Ç
+
+		// new combos below ( forward slash + d, forward slash + l )
+		'/'      : { d:"\u0111", D:"\u0110", l:"\u0142", L:"\u0141" } // stroke đ Đ ł Ł
+	}
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.albanian);
-
-// New combos using specific accents
-// Not sure what to do with these accents:  ˇ ˘ ˙ ° ˛ ˝
-$.extend(true, $.keyboard.defaultOptions.combos, {
-	// duplicated from regular combos, used specific accents here instead ("); \u00a8 = ¨
-	'\u00a8' : { a:"\u00e4", A:"\u00c4", e:"\u00eb", E:"\u00cb", i:"\u00ef", I:"\u00cf", o:"\u00f6", O:"\u00d6", u:"\u00fc", U:"\u00dc", y:"\u00ff", Y:"\u0178" }, // umlaut/trema
-	'\u00b8' : { c:"\u00e7", C:"\u00c7" }, // cedilla ç Ç
-
-	// new combos below
-	'/'      : { d:"\u0111", D:"\u0110", l:"\u0142", L:"\u0141" } // stroke đ Đ ł Ł
-});
-
-// Update regex for the combos above
-$.keyboard.comboRegex = /([`\'~\^\"ao\/\u00a8\u00b8])([a-z])/gim;

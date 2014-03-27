@@ -53,7 +53,7 @@ $.keyboard.layouts['french-azerty-2'] = {
 		"{t} A Z E R T Y U I O P \u00a8 \u00a3",
 		"Q S D F G H J K L M % \u00b5 {e}",
 		"{s} > W X C V B N ? . / \u00a7 {s}",
-		"{accept} {alt} {space} {alt} {c}"
+		"{a} {alt} {space} {alt} {c}"
 	],
 	'alt' : [
 		"\u00b2 & ~ # { [ | ` \\ ^ @ ] } {b}",
@@ -105,8 +105,8 @@ $.keyboard.layouts['french-bepo-V1.0rc2'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.french = {
+if (typeof($.keyboard.language) === 'undefined') { $.keyboard.language = {}; };
+$.keyboard.language.french = {
 	display : {
 		'a'      : '\u2714:Valider (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Valider:Valider (Shift-Enter)',
@@ -131,7 +131,3 @@ language.french = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Utiliser la molette de la souris pour voir les autres lettres',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.french);

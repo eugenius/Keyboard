@@ -9,7 +9,7 @@
  */
 
 /* based on http://ascii-table.com/keyboard.php/462 */
-$.keyboard.layouts['arabic-azerty'] = {
+jQuery.keyboard.layouts['arabic-azerty'] = {
 	'default' : [
 		'\u00b2 & \u00e9 " \' ( - \u00e8 _ \u00e7 \u00e0 ) = {bksp}',
 		"{tab} a z e r t y u i o p ` $",
@@ -41,7 +41,7 @@ $.keyboard.layouts['arabic-azerty'] = {
 };
 
 /* based on http://ascii-table.com/keyboard.php/470 */
-$.keyboard.layouts['arabic-qwerty-1'] = {
+jQuery.keyboard.layouts['arabic-qwerty-1'] = {
 	'default' : [
 		'` 1 2 3 4 5 6 7 8 9 0 - = {bksp}',
 		"{tab} q w e r t y u i o p [ ] \\",
@@ -73,7 +73,7 @@ $.keyboard.layouts['arabic-qwerty-1'] = {
 };
 
 /* based on keyboard layout from http://ascii-table.com/keyboard.php/238 */
-$.keyboard.layouts['arabic-qwerty-2'] = {
+jQuery.keyboard.layouts['arabic-qwerty-2'] = {
 	'default' : [
 		'< 1 2 3 4 5 6 7 8 9 0 - = {bksp}',
 		"{tab} q w e r t y u i o p [ ]",
@@ -105,7 +105,7 @@ $.keyboard.layouts['arabic-qwerty-2'] = {
 };
 
 /* based on keyboard layout from http://ascii-table.com/keyboard.php/239 */
-$.keyboard.layouts['arabic-qwerty-3'] = {
+jQuery.keyboard.layouts['arabic-qwerty-3'] = {
 	'default' : [
 		'< 1 2 3 4 5 6 7 8 9 0 - = {bksp}',
 		"{tab} q w e r t y u i o p \u00a2 |",
@@ -137,7 +137,7 @@ $.keyboard.layouts['arabic-qwerty-3'] = {
 };
 
 /* based on keyboard layout from http://ascii-table.com/keyboard.php/253 */
-$.keyboard.layouts['arabic-qwerty-4'] = {
+jQuery.keyboard.layouts['arabic-qwerty-4'] = {
 	'default' : [
 		'< 1 2 3 4 5 6 7 8 9 0 - = {bksp}',
 		"{tab} q w e r t y u i o p [ ]",
@@ -171,8 +171,8 @@ $.keyboard.layouts['arabic-qwerty-4'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.arabic = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.arabic = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -196,8 +196,6 @@ language.arabic = {
 	},
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
+	// language direction
+	rtl : true
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.arabic);

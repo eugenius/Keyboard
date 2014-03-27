@@ -11,7 +11,7 @@
  */
 
 /* from http://ascii-table.com/keyboard.php/179 */
-$.keyboard.layouts['turkish-q'] = {
+jQuery.keyboard.layouts['turkish-q'] = {
 	'default' : [
 		"\u0022 1 2 3 4 5 6 7 8 9 0 \u002a \u002d {bksp}",
 		"{tab} q w e r t y u \u0131 o p \u011f \u00fc",
@@ -36,7 +36,7 @@ $.keyboard.layouts['turkish-q'] = {
 };
 
 /* from http://ascii-table.com/keyboard.php/440 */
-$.keyboard.layouts['turkish-f'] = {
+jQuery.keyboard.layouts['turkish-f'] = {
 	'default' : [
 		"\u002B \u0031 \u0032 \u0033 \u0034 \u0035 \u0036 \u0037 \u0038 \u0039 \u0030 \u002F \u002D {bksp}",
 		"{tab} \u0066 \u0067 \u011F \u0131 \u006F \u0064 \u0072 \u006E \u0068 \u0070 \u0071 \u0077",
@@ -63,8 +63,8 @@ $.keyboard.layouts['turkish-f'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.turkish = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.turkish = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -89,7 +89,3 @@ language.turkish = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.turkish);

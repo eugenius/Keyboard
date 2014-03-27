@@ -7,7 +7,7 @@
  *
  * license for this file: WTFPL, unless the source layout site has a problem with me using them as a reference
  */
-$.keyboard.layouts['mongolian'] = {
+jQuery.keyboard.layouts['mongolian-qwerty'] = {
     'alt' : [
         "` 1 2 3 4 5 6 7 8 9 0 - = {bksp}",
         "{tab} q w e r t y u i o p [ ] \\",
@@ -43,8 +43,8 @@ $.keyboard.layouts['mongolian'] = {
 
 // Keyboard Language
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.mongolian = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.mongolian = {
     display : {
         'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
         'accept' : 'Accept:Accept (Shift-Enter)',
@@ -69,7 +69,3 @@ language.mongolian = {
     // Message added to the key title while hovering, if the mousewheel plugin exists
     wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.mongolian);

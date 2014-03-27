@@ -9,7 +9,7 @@
  */
 
 /* based on http://ascii-table.com/keyboard.php/173-1 */
-$.keyboard.layouts['catalan-qwerty'] = {
+jQuery.keyboard.layouts['catalan-qwerty'] = {
 	'default' : [
 		"\u00ba 1 2 3 4 5 6 7 8 9 0 ' \u00a1 {bksp}",
 		"{tab} q w e r t y u i o p \u0300 +",
@@ -43,8 +43,8 @@ $.keyboard.layouts['catalan-qwerty'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.catalan = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.catalan = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -69,7 +69,3 @@ language.catalan = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.catalan);

@@ -9,7 +9,7 @@
  */
 
 /* qwerty by Mika Perreri Korhonen (https://github.com/jouk0) -  */
-$.keyboard.layouts['swedish-qwerty'] = {
+jQuery.keyboard.layouts['swedish-qwerty'] = {
 	'default' : [
 		"\u00a7 1 2 3 4 5 6 7 8 9 0 + \u0301 {bksp}",
 		"{tab} q w e r t y u i o p \u00e5 \u0308",
@@ -34,7 +34,7 @@ $.keyboard.layouts['swedish-qwerty'] = {
 };
 
 /* dvorak - from http://www.ludd.luth.se/~torger/se_dvorak.html */
-$.keyboard.layouts['swedish-dvorak'] = {
+jQuery.keyboard.layouts['swedish-dvorak'] = {
 	'default' : [
 		"\u00a7 1 2 3 4 5 6 7 8 9 0 + \u0301 {bksp}",
 		"{tab} \u00f6 \u00e5 \u00e4 p y f g c r l q \u00a8",
@@ -61,8 +61,8 @@ $.keyboard.layouts['swedish-dvorak'] = {
 // Keyboard Language
 // please update this section to match this language and email me with corrections!
 // ***********************
-if (typeof(language) === 'undefined') { var language = {}; };
-language.swedish = {
+if (typeof(jQuery.keyboard.language) === 'undefined') { jQuery.keyboard.language = {}; }
+jQuery.keyboard.language.swedish = {
 	display : {
 		'a'      : '\u2714:Accept (Shift-Enter)', // check mark - same action as accept
 		'accept' : 'Accept:Accept (Shift-Enter)',
@@ -87,7 +87,3 @@ language.swedish = {
 	// Message added to the key title while hovering, if the mousewheel plugin exists
 	wheelMessage : 'Use mousewheel to see other keys',
 };
-
-// This will replace all default language options with these language options.
-// it is separated out here so the layout demo will work properly.
-$.extend(true, $.keyboard.defaultOptions, language.swedish);
