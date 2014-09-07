@@ -1129,7 +1129,7 @@ $.keyboard = function(el, options){
 		$.each($.keyboard.layouts[o.layout], function(set, keySet){
 			var txt;
 			// skip layout name & lang settings
-			if (set !== "" && !/^(name|lang)$/.test(set)) {
+			if (set !== "" && !/^(name|lang|rtl)$/.test(set)) {
 				sets++;
 				newSet = $('<div />')
 					.attr('name', set) // added for typing extension
