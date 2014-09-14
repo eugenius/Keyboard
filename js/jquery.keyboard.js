@@ -374,7 +374,7 @@ $.keyboard = function(el, options){
 		base.bindKeys();
 
 		// adjust with window resize
-		if ($.ui && $.ui.position) {
+		if (o.reposition && $.ui && $.ui.position) {
 			$(window).bind('resize.keyboard', function(){
 				if (base.isVisible()) {
 					base.$keyboard.position(base.position);
@@ -1626,6 +1626,9 @@ $.keyboard = function(el, options){
 			// used when "usePreview" is false (centers the keyboard at the bottom of the input/textarea)
 			at2: 'center bottom'
 		},
+
+		// allow jQuery position utility to reposition the keyboard on window resize
+		reposition   : true,
 
 		// preview added above keyboard if true, original input/textarea used if false
 		usePreview   : true,
