@@ -67,6 +67,8 @@ $.keyboard = function(el, options){
 		// delete keys
 		base.alwaysAllowed = [20,33,34,35,36,37,38,39,40,45,46];
 		base.$keyboard = [];
+		// make a copy of the original keyboard position
+		o.position.orig_at = o.position.at;
 
 		// Check if caret position is saved when input is hidden or loses focus
 		// (*cough* all versions of IE and I think Opera has/had an issue as well
@@ -305,6 +307,9 @@ $.keyboard = function(el, options){
 	};
 
 	base.startup = function(){
+		// ensure base.$preview is defined
+		base.$preview = base.$el;
+
 		if ( !base.$keyboard.length ) {
 			// custom layout - create a unique layout name based on the hash
 			if (o.layout === "custom") { o.layoutHash = 'custom' + base.customHash(); }
@@ -340,6 +345,8 @@ $.keyboard = function(el, options){
 
 			// build preview display
 			if (o.usePreview) {
+				// restore original positioning (in case usePreview option is altered)
+				o.position.at = o.position.orig_at;
 				base.$preview = base.$el.clone(false)
 					.removeAttr('id')
 					.removeClass('ui-keyboard-placeholder ui-keyboard-input')
@@ -353,7 +360,6 @@ $.keyboard = function(el, options){
 					.prependTo(base.$keyboard);
 			} else {
 				// No preview display, use element and reposition the keyboard under it.
-				base.$preview = base.$el;
 				o.position.at = o.position.at2;
 			}
 
