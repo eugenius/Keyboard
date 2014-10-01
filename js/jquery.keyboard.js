@@ -1793,13 +1793,16 @@ $.keyboard = function(el, options){
  */
 (function($, len, createRange, duplicate){
 "use strict";
+// fix for IE8 (http://perrymitchell.net/article/ie8_javascript_indexof_hasownproperty/)
+window.hasOwnProperty = window.hasOwnProperty || Object.prototype.hasOwnProperty;
+
 $.fn.caret = function(options,opt2) {
 	if ( typeof this[0] === 'undefined' || this.is(':hidden') || this.css('visibility') === 'hidden' ) {
 		return this;
 	}
 	var s, start, e, end, selRange, range, stored_range, te, val,
 		selection = document.selection, t = this[0], sTop = t.scrollTop,
-		ss = typeof t.selectionStart !== 'undefined';
+		ss = t.hasOwnProperty('selectionStart');
 	if (typeof options === 'object' && options.start && options.end) {
 		start = options.start;
 		end = options.end;
@@ -1808,22 +1811,27 @@ $.fn.caret = function(options,opt2) {
 		end = opt2;
 	}
 	if (typeof start !== 'undefined') {
-		if (ss){
-			t.selectionStart=start;
-			t.selectionEnd=end;
-		} else {
-			selRange = t.createTextRange();
-			selRange.collapse(true);
-			selRange.moveStart('character', start);
-			selRange.moveEnd('character', end-start);
-			selRange.select();
+		if (!/(email|number)/.test(t.type)) {
+			if (ss){
+				t.selectionStart=start;
+				t.selectionEnd=end;
+			} else {
+				selRange = t.createTextRange();
+				selRange.collapse(true);
+				selRange.moveStart('character', start);
+				selRange.moveEnd('character', end-start);
+				selRange.select();
+			}
 		}
 		// must be visible or IE8 crashes; IE9 in compatibility mode works fine - issue #56
 		if (this.is(':visible') || this.css('visibility') !== 'hidden') { this.focus(); }
 		t.scrollTop = sTop;
 		return this;
 	} else {
-		if (ss) {
+		if (/(email|number)/.test(t.type)) {
+			// fix suggested by raduanastase (https://github.com/Mottie/Keyboard/issues/105#issuecomment-40456535)
+			s = e = this.val().length;
+		} else if (ss) {
 			s = t.selectionStart;
 			e = t.selectionEnd;
 		} else {
