@@ -152,8 +152,11 @@ $.keyboard = $.keyboard || {};
 					}
 			};
 
-			base.orig_layout = base.options.layout;
-			base.options.layout = "scrambled" + Math.round(Math.random() * 10000);
+			// scrambled layout already initialized
+			if (!/^scrambled/.test(base.options.layout)) {
+				base.orig_layout = base.options.layout;
+				base.options.layout = "scrambled" + Math.round(Math.random() * 10000);
+			}
 
 		});
 	};
