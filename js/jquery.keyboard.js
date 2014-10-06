@@ -169,7 +169,7 @@ $.keyboard = function(el, options){
 			// add delay to get correct caret position
 			setTimeout(function(){
 				// Number/email inputs don't support selectionStart and selectionEnd
-				if ( !/(number|email)/.test(base.el.type) ) {
+				if ( !/(number|email)/i.test(base.el.type) ) {
 					var c = base.$el.caret();
 					base.last.start = c.start;
 					base.last.end = c.end;
@@ -632,7 +632,7 @@ $.keyboard = function(el, options){
 			// using "kb" namespace for mouse repeat functionality to keep it separate
 			// I need to trigger a "repeater.keyboard" to make it work
 			.bind('mouseup.keyboard mouseleave.kb touchend.kb touchmove.kb touchcancel.kb', function(e){
-				if (/(mouseleave|touchend|touchcancel)/.test(e.type)) {
+				if (/(mouseleave|touchend|touchcancel)/i.test(e.type)) {
 					$(this).removeClass(o.css.buttonHover); // needed for touch devices
 				} else {
 					if (base.isVisible() && base.isCurrent()) { base.$preview.focus(); }
@@ -764,7 +764,7 @@ $.keyboard = function(el, options){
 		// check meta key set
 		if (base.metaActive) {
 			// the name attribute contains the meta set # "meta99"
-			key = (el && el.name && /meta/.test(el.name)) ? el.name : '';
+			key = (el && el.name && /meta/i.test(el.name)) ? el.name : '';
 			// save active meta keyset name
 			if (key === '') {
 				key = (base.metaActive === true) ? '' : base.metaActive;
@@ -1155,7 +1155,7 @@ $.keyboard = function(el, options){
 		$.each($.keyboard.layouts[o.layout], function(set, keySet){
 			var txt;
 			// skip layout name & lang settings
-			if (set !== "" && !/^(name|lang|rtl)$/.test(set)) {
+			if (set !== "" && !/^(name|lang|rtl)$/i.test(set)) {
 				sets++;
 				newSet = $('<div />')
 					.attr('name', set) // added for typing extension
@@ -1809,8 +1809,6 @@ $.keyboard = function(el, options){
  */
 (function($, len, createRange, duplicate){
 "use strict";
-// fix for IE8 (http://perrymitchell.net/article/ie8_javascript_indexof_hasownproperty/)
-window.hasOwnProperty = window.hasOwnProperty || Object.prototype.hasOwnProperty;
 
 $.fn.caret = function(options,opt2) {
 	if ( typeof this[0] === 'undefined' || this.is(':hidden') || this.css('visibility') === 'hidden' ) {
@@ -1818,7 +1816,7 @@ $.fn.caret = function(options,opt2) {
 	}
 	var s, start, e, end, selRange, range, stored_range, te, val,
 		selection = document.selection, t = this[0], sTop = t.scrollTop,
-		ss = t.hasOwnProperty('selectionStart');
+		ss = 'selectionStart' in t;
 	if (typeof options === 'object' && options.start && options.end) {
 		start = options.start;
 		end = options.end;
@@ -1827,7 +1825,7 @@ $.fn.caret = function(options,opt2) {
 		end = opt2;
 	}
 	if (typeof start !== 'undefined') {
-		if (!/(email|number)/.test(t.type)) {
+		if (!/(email|number)/i.test(t.type)) {
 			if (ss){
 				t.selectionStart=start;
 				t.selectionEnd=end;
@@ -1844,7 +1842,7 @@ $.fn.caret = function(options,opt2) {
 		t.scrollTop = sTop;
 		return this;
 	} else {
-		if (/(email|number)/.test(t.type)) {
+		if (/(email|number)/i.test(t.type)) {
 			// fix suggested by raduanastase (https://github.com/Mottie/Keyboard/issues/105#issuecomment-40456535)
 			s = e = this.val().length;
 		} else if (ss) {
