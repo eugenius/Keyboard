@@ -812,7 +812,6 @@ $.keyboard = function(el, options){
 			pos = base.$preview.caret(),
 			layout = $.keyboard.builtLayouts[base.layout],
 			len = val.length; // save original content length
-
 		// silly IE caret hacks... it should work correctly, but navigating using arrow keys in a textarea
 		// is still difficult
 		// in IE, pos.end can be zero after input loses focus
@@ -867,7 +866,6 @@ $.keyboard = function(el, options){
 		pos.start += val.length - len;
 		pos.end += val.length - len;
 		base.$preview.val(val);
-
 		base.$preview.caret(pos.start, pos.end);
 
 		// calculate current cursor scroll location and set scrolltop to keep it in view
@@ -1818,7 +1816,7 @@ $.fn.caret = function(options,opt2) {
 	var s, start, e, end, selRange, range, stored_range, te, val,
 		selection = document.selection, t = this[0], sTop = t.scrollTop,
 		ss = 'selectionStart' in t;
-	if (typeof options === 'object' && options.start && options.end) {
+	if (typeof options === 'object' && 'start' in options && 'end' in options) {
 		start = options.start;
 		end = options.end;
 	} else if (typeof options === 'number' && typeof opt2 === 'number') {
